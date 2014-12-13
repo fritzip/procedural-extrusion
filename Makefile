@@ -9,11 +9,11 @@ TARGET   = extru
 CC       = g++
 
 # compiling flags here
-CFLAGS   = -Wall -g 
+CFLAGS   = -Wall -g -std=c++11
 #-I.
 
 # linking flags here
-LFLAGS   = -Wall -I. -g
+LFLAGS   = -Wall -I. -g 
 
 # using OpenGL lib
 #GL_INCLUDE    = -I/usr/include/GL

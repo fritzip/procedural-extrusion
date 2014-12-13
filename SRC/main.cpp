@@ -12,6 +12,8 @@
 
 #include "shape.h"
 
+#include "cdll.h"
+
 
 // Identifiant de la racine de la scene
 Node *scene=NULL;
@@ -280,7 +282,7 @@ void InitGlut(int width,int height)
 }
 
 
-int main(int argc,char **argv)
+int main(int argc, char **argv)
 {
 	glutInit(&argc, argv);
 	InitGlut(512,512);
@@ -288,6 +290,9 @@ int main(int argc,char **argv)
 
 	scene=new Cube(Vector(-1,-1,-2),Vector(2,3,1));
 	// scene=new Cylinder(Vector(0,0,0),Vector(0,0,1),0.5,30);
+
+
+	// House ma_maison(input_plan);
 
 	glutMainLoop();
 	return 0;
