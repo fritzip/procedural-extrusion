@@ -1,53 +1,56 @@
+#ifndef __HOUSE_H__
+#define __HOUSE_H__
 
 #include <stdio.h>
+#include <math.h>
 #include <vector>
 #include <list>
 #include <queue>
+
+#define PI 3.14159265
 
 struct XYZco
 {
 	double x, y, z;
 };
 
+void print_co(XYZco co);
+
 struct WZco
 {
 	double w, z;
 };
 
+XYZco wz_to_xyz(const WZco &p1, const WZco &p2, double y);
 
 class Plane
 {
-	double a, b, c;
+	double a, b, c, d;
 	std::vector<XYZco> vertex;
 
 public:
-	Plane()
+	Plane() : a(0), b(0), c(0), d(0), vertex()
 	{}
+
+	Plane(const XYZco &coc1, const XYZco &coc2, XYZco prof1) : a(0), b(0), c(0), d(0), vertex({coc1, coc2, prof1})
+	{
+		compute_plan(coc1, coc2, prof1);
+	}
 
 	~Plane()
 	{}
 
+	double get_a() const { return a; }
+	double get_b() const { return b; }
+	double get_c() const { return c; }
+	double get_d() const { return d; }
+
+	void compute_plan( const XYZco &p, const XYZco &q, const XYZco &r  );
 };
 
-XYZco intersect3planes(const Plane &p1, const Plane &p2, const Plane &p3);
+int intersect_is_point( const Plane &p1, const Plane &p2, const Plane &p3 );
 
-class Edge
-{
-	std::vector<WZco> profile;
-	Plane directionPlane;
-
-public:
-	Edge()
-	{}
-
-	~Edge()
-	{}
-
-	Plane getDirPlane() const 
-	{
-		return directionPlane;
-	}
-};
+XYZco intersect_3_planes(const Plane &p1, const Plane &p2, const Plane &p3);
 
 
 class Corner
@@ -58,59 +61,85 @@ public:
 	Corner() : co{0, 0, 0}
 	{}
 
-	Corner(double _x, double _y, double _z) : co{_x, _y, _z}
+	Corner(double x, double y, double z) : co{x, y, z}
 	{}
 
 	~Corner()
 	{}
 
-	XYZco getCo() const
-	{
-		return co;
-	}
+	XYZco get_co() const { return co; }
 
 };
 
-
-class Corndge
+class Edge
 {
-	Corner c;
-	Edge e;
+	Corner *prev;
+	Corner *next;
+	std::vector<WZco> profile;
+	Plane directionPlane;
 
 public:
-	Corndge()
+	Edge()
 	{}
 
-	~Corndge()
+	Edge(Corner *c1, Corner *c2, std::vector<WZco> _profile)
+	{
+		prev = c1 ;
+		next = c2 ;
+		profile = _profile ;
+
+		if (_profile.size() >= 2)
+		{
+			XYZco pt = wz_to_xyz(_profile[0], _profile[1], fabs( c1->get_co().y - c2->get_co().y ) / 2 );
+			directionPlane = Plane(c1->get_co(), c2->get_co(), pt);
+		}
+		// else 
+		// 	directionPlane = Plane();
+	}
+
+	~Edge()
 	{}
 
-	Edge getEdge() const
-	{
-		return e;
-	}
-
-	Corner getCorner() const
-	{
-		return c;
-	}
+	Plane get_dir_plane() const { return directionPlane; }
 };
 
 
-class Plan
-{
-	friend class House;
 
-	std::list<Corndge> ce;
+// class Corndge
+// {
+// 	Corner c;
+// 	Edge e;
 
-public:
-	Plan()
-	{}
+// public:
+// 	Corndge()
+// 	{}
 
-	~Plan()
-	{}
+// 	~Corndge()
+// 	{}
 
-};
+// 	Edge get_edge() const { return e; }
+// 	Corner get_corner() const { return c; }
+// };
 
+
+// class Plan
+// {
+// 	friend class House;
+
+// 	std::list<Corndge> ce;
+
+// public:
+// 	Plan() : ce()
+// 	{}
+
+// 	Plan(const std::list<Corndge> &corndge_list) : ce(1, corndge_list)
+// 	{}
+
+// 	~Plan()
+// 	{}
+// };
+
+typedef std::list<Edge> Plan;
 
 class House
 {
@@ -138,10 +167,8 @@ class Event
 public:
 	Event();
 	~Event();
-	XYZco getCo() const
-	{
-		return co;
-	}
+
+	XYZco get_co() const { return co; }
 };
 
 class EventComparaison
@@ -154,9 +181,11 @@ public:
 
 	bool operator() (const Event &a, const Event &b) const
 	{
-		if (reverse) return (a.getCo().z > b.getCo().z);
-		else return (a.getCo().z < b.getCo().z);
+		if (reverse) return (a.get_co().z > b.get_co().z);
+		else return (a.get_co().z < b.get_co().z);
 	}
 };
 
 typedef std::priority_queue<Event,std::vector<Event>,EventComparaison> PriorityQ;
+
+#endif

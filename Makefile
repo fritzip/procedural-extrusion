@@ -13,7 +13,7 @@ CFLAGS   = -Wall -g -std=c++11
 #-I.
 
 # linking flags here
-LFLAGS   = -Wall -I. -g 
+LFLAGS   = -Wall -g 
 
 # using OpenGL lib
 #GL_INCLUDE    = -I/usr/include/GL
