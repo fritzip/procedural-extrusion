@@ -1,11 +1,18 @@
+/*****************************************************************************/
+//
+//									Plane
+//
+/*****************************************************************************/
 #include <iostream>
 
 #include "plane.h"
 
 using namespace std;
 
-/********** Plane **********/
 
+/*************************************/
+//			Constructors
+/*************************************/
 Plane::Plane() : n(), d(0), vertex()
 {}
 
@@ -14,9 +21,26 @@ Plane::Plane(const Vector &normale, double _d, const Vector &coc1, const Vector 
 	compute_plan(coc1, coc2, prof1);
 }
 
+/*************************************/
+//			Destructors
+/*************************************/
 Plane::~Plane()
 {}
 
+/*************************************/
+//			Public methods
+/*************************************/
+void Plane::compute_plan( const Vector &p, const Vector &q, const Vector &r  )
+{
+	this->n[0] = ( q[1] - p[1] ) * ( r[2] - p[2] ) - ( q[2] - p[2] ) * ( r[1] - p[1] );
+	this->n[1] = ( q[2] - p[2] ) * ( r[0] - p[0] ) - ( q[0] - p[0] ) * ( r[2] - p[2] );
+	this->n[2] = ( q[0] - p[0] ) * ( r[1] - p[1] ) - ( q[1] - p[1] ) * ( r[0] - p[0] );
+	this->d = - ( this->n[0] * p[0] + this->n[1] * p[1] + this->n[2] * p[2] );
+}
+
+/*************************************/
+//			Operators overloading
+/*************************************/
 double& Plane::operator[] (int i) 
 {
 	if      (i == 0) return n[0];
@@ -33,14 +57,15 @@ const double Plane::operator[] (int i) const
 	else             return n[3];
 }
 
+
+/*************************************/
+//			Getters
+/*************************************/
 Vector Plane::get_norm() const { return n; }
 
 vector<Vector> Plane::get_vert() const { return vertex; }
 
-void Plane::compute_plan( const Vector &p, const Vector &q, const Vector &r  )
-{
-	this->n[0] = ( q[1] - p[1] ) * ( r[2] - p[2] ) - ( q[2] - p[2] ) * ( r[1] - p[1] );
-	this->n[1] = ( q[2] - p[2] ) * ( r[0] - p[0] ) - ( q[0] - p[0] ) * ( r[2] - p[2] );
-	this->n[2] = ( q[0] - p[0] ) * ( r[1] - p[1] ) - ( q[1] - p[1] ) * ( r[0] - p[0] );
-	this->d = - ( this->n[0] * p[0] + this->n[1] * p[1] + this->n[2] * p[2] );
-}
+
+/*************************************/
+//			Setters
+/*************************************/
