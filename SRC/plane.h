@@ -24,6 +24,14 @@ public:
 	std::vector<Vector> get_vert() const ;
 	
 	void compute_plan( const Vector &p, const Vector &q, const Vector &r  );
+
 };
+
+/*************************************/
+//			Out-of-class functions
+/*************************************/
+int intersect_is_point( const Plane &p1, const Plane &p2, const Plane &p3 );
+
+Vector intersect_3_planes( const Plane &p1, const Plane &p2, const Plane &p3 );
 
 #endif

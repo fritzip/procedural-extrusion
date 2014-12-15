@@ -4,11 +4,12 @@
 //
 /*****************************************************************************/
 #include <iostream>
+#include <eigen3/Eigen/Dense>
 
 #include "plane.h"
 
 using namespace std;
-
+using namespace Eigen;
 
 /*************************************/
 //			Constructors
@@ -39,6 +40,18 @@ void Plane::compute_plan( const Vector &p, const Vector &q, const Vector &r  )
 }
 
 /*************************************/
+//			Getters
+/*************************************/
+Vector Plane::get_norm() const { return n; }
+
+vector<Vector> Plane::get_vert() const { return vertex; }
+
+/*************************************/
+//			Setters
+/*************************************/
+
+
+/*************************************/
 //			Operators overloading
 /*************************************/
 double& Plane::operator[] (int i) 
@@ -57,15 +70,24 @@ const double Plane::operator[] (int i) const
 	else             return n[3];
 }
 
-
 /*************************************/
-//			Getters
+//			Out-of-class functions
 /*************************************/
-Vector Plane::get_norm() const { return n; }
+int intersect_is_point( const Plane &p1, const Plane &p2, const Plane &p3 )
+{
+	MatrixXd m(3,3);
+	MatrixXd maug(3,4);
+	m << p1[0], p1[1], p1[2], p2[0], p2[1], p2[2], p3[0], p3[1], p3[2];
+	maug << p1[0], p1[1], p1[2], p1[3], p2[0], p2[1], p2[2], p2[3], p3[0], p3[1], p3[2], p3[3];
+	FullPivLU<MatrixXd> lum(m);
+	FullPivLU<MatrixXd> lumaug(maug);
+	return (lum.rank() == 3 && lumaug.rank() == 3);
+}
 
-vector<Vector> Plane::get_vert() const { return vertex; }
-
-
-/*************************************/
-//			Setters
-/*************************************/
+Vector intersect_3_planes( const Plane &p1, const Plane &p2, const Plane &p3 )
+{
+	return (((dot(p1.get_vert()[0],  p1.get_norm())*(p2.get_norm()*p3.get_norm()))
+		+   (dot(p2.get_vert()[0],  p2.get_norm())*(p1.get_norm()*p3.get_norm()))
+		+   (dot(p3.get_vert()[0],  p3.get_norm())*(p1.get_norm()*p2.get_norm())))
+		/ (det3(p1.get_norm(), p2.get_norm(), p3.get_norm())));
+}

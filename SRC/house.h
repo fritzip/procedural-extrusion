@@ -10,7 +10,7 @@
 #include "vector.h"
 #include "edge.h"
 #include "corner.h"
-""
+
 #define PI 3.14159265
 
 
@@ -19,11 +19,6 @@
 // XYZco wz_to_xyz(const WZco &p1, const WZco &p2, double y); 
 // reflechir orientation (perpendicalaire à la direction p1 - p2)
 
-
-
-int intersect_is_point( const Plane &p1, const Plane &p2, const Plane &p3 );
-
-Vector intersect_3_planes(const Plane &p1, const Plane &p2, const Plane &p3);
 
 
 
