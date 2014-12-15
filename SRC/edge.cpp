@@ -16,11 +16,15 @@ using namespace std;
 Edge::Edge()
 {}
 
-Edge::Edge(Corner *c1, Corner *c2 ) : prev(c1), next(c2)
-{
-	c1->next = this;
-	c2->prev = this;
-} 
+// Edge::Edge(Corner *c1, Corner *c2 ) : prev(c1), next(c2)
+// {
+// 	c1->next = this;
+// 	c2->prev = this;
+// } 
+
+Edge::Edge( const /*std::vector<WZco>*/ int &_profile ) : profile(_profile), directionPlane(), prev(NULL), next(NULL)
+{}
+
 
 // Edge::Edge( vector<WZco> _profile, Corner *c1, Corner *c2 )
 // {
@@ -47,16 +51,19 @@ Edge::~Edge()
 /*************************************/
 //			Public methods
 /*************************************/
-Plane Edge::get_dir_plane() const { return directionPlane; }
-
 
 /*************************************/
 //			Getters
 /*************************************/
+Plane Edge::get_dir_plane() const { return directionPlane; }
+Corner* Edge::gc_prev() const {return prev;}
+Corner* Edge::gc_next() const {return next;}
 
 /*************************************/
 //			Setters
 /*************************************/
+void Edge::sc_prev(Corner *c) { prev = c; }
+void Edge::sc_next(Corner *c) { next = c; }
 
 /*************************************/
 //			Operators overloading

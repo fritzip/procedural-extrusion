@@ -7,39 +7,16 @@
 #include <list>
 #include <queue>
 
-#include "vector.h"
-#include "edge.h"
-#include "corner.h"
+#include "plan.h"
 
 #define PI 3.14159265
 
-
-// void print_co(XYZco co);
 
 // XYZco wz_to_xyz(const WZco &p1, const WZco &p2, double y); 
 // reflechir orientation (perpendicalaire à la direction p1 - p2)
 
 
 
-
-// class Plan
-// {
-// 	friend class House;
-
-// 	std::list<Corner> ce;
-
-// public:
-// 	Plan() : ce()
-// 	{}
-
-// 	Plan(const std::list<Corndge> &corndge_list) : ce(1, corndge_list)
-// 	{}
-
-// 	~Plan()
-// 	{}
-// };
-
-typedef std::list<Corner*> Plan;
 
 class House
 {

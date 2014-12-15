@@ -3,8 +3,10 @@
 //									Vector"
 //
 /*****************************************************************************/
-
+#include <iostream>
 #include "vector.h"
+
+using namespace std;
 
 /*************************************/
 //			Constructors
@@ -95,7 +97,10 @@ inline Vector& Vector::operator/= (const Vector& u)
 	return *this;
 }
 
-
+void Vector::print(ostream &flux) const
+{
+	flux << "x = " << x << ", y = " << y << ", z = " << z ;
+}
 
 /*************************************/
 //			Out-of-class functions
@@ -175,4 +180,8 @@ double norm(const Vector& u)
 	return sqrt(u[0]*u[0]+u[1]*u[1]+u[2]*u[2]);
 }
 
-
+ostream &operator<<( ostream &flux, const Vector &v)
+{
+	v.print(flux) ;
+	return flux;
+}

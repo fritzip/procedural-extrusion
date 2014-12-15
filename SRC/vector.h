@@ -7,6 +7,7 @@
 #define __Vector__
 
 #include <math.h>
+#include <iostream>
 
 //! \class Vector vector.h
 //! \brief Cette classe définit des vecteurs et des sommets dans l'espace.
@@ -24,11 +25,11 @@ class Vector
 		double& operator[] (int i) ;
 		const double operator[] (int i) const;
 
+		void print(std::ostream &flux) const;
+
 		// Unary operators
 		Vector operator+ () const;
 		Vector operator- () const;
-
-		// Vector substract
 
 		// Assignment operators
 		Vector& operator+= (const Vector&);
@@ -67,6 +68,8 @@ Vector max(const Vector&,const Vector&);
 Vector orthogonal(const Vector&);
 // Norm
 double norm(const Vector&);
+
+std::ostream &operator<<( std::ostream &flux, const Vector &v);
 
 // Binary operators
 inline Vector operator+ (const Vector &u, const Vector &v)
@@ -126,5 +129,6 @@ inline int operator>(const Vector& a,const Vector& b)
 {
 	return ((a[0]>b[0])&&(a[1]>b[1])&&(a[2]>b[2]));
 }
+
 
 #endif
