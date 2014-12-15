@@ -67,7 +67,7 @@ inline Vector Box::Center() const { return 0.5*(a+b); }
 inline Vector Box::Diagonal() const { return 0.5*(b-a); }
 
 //! Returns the radius of the box, i.e. the length of the half diagonal of the box.
-inline double Box::Radius() const { return 0.5*Norm(b-a); }
+inline double Box::Radius() const { return 0.5*norm(b-a); }
 
 //! Returns the k<SUP>th</SUP> vertex of the box.
 inline Vector Box::Vertex(int k) const { return Vector ((k&1)?b[0]:a[0],(k&2)?b[1]:a[1],(k&4)?b[2]:a[2]); }

@@ -29,14 +29,14 @@ void Cylinder::Render()
   GlutShade(0.8,0.9,0.6);
 
   Vector u = b-a ;
-  Vector axis=u*(1.0/Norm(u));
+  Vector axis=u*(1.0/norm(u));
 
   // MayaFrame
-  Vector x=Orthogonal(axis);
+  Vector x=orthogonal(axis);
   Vector y=axis/x;
 
-  x = x*(1.0/Norm(x));
-  y = y*(1.0/Norm(y));
+  x = x*(1.0/norm(x));
+  y = y*(1.0/norm(y));
 
   glBegin(GL_QUADS);
 

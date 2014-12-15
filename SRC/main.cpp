@@ -291,17 +291,19 @@ int main(int argc, char **argv)
 	scene=new Cube(Vector(-1,-1,-2),Vector(2,3,1));
 	// scene=new Cylinder(Vector(0,0,0),Vector(0,0,1),0.5,30);
 
-	// Corner *c1 = new Corner(0.0, 1.0, 0.0);
-	// Corner *c2 = new Corner(1.0, 0.0, 0.0);
-	// Corner *c3 = new Corner(1.0, 1.0, 0.0);
-	// Corner *c4 = new Corner(0.0, 0.0, 0.0);
-	// Edge e1(c1, c2);
-	// Edge e2(c2, c3);
-	// Edge e3(c3, c4);
-	// Edge e4(c4, c1);
+	Corner *c1 = new Corner(0.0, 1.0, 0.0);
+	Corner *c2 = new Corner(1.0, 0.0, 0.0);
+	Corner *c3 = new Corner(1.0, 1.0, 0.0);
+	Corner *c4 = new Corner(0.0, 0.0, 0.0);
+	Edge *e1 = new Edge(c1, c2);
+	Edge *e2 = new Edge(c2, c3);
+	Edge *e3 = new Edge(c3, c4);
+	Edge *e4 = new Edge(c4, c1);
+
+	Plan input_plan({c1, c2, c3, c4});
 
 	// Plan input_plan(corndge_list);
-	// House ma_maison(input_plan);
+	House ma_maison(input_plan);
 
 	glutMainLoop();
 	return 0;
