@@ -24,27 +24,29 @@ void House::extrude()
 	Plan active_plan(level.back());
 	Plane p1, p2, p3;
 
-	// for (Plan::iterator itc=active_plan.begin(); itc != active_plan.end(); ++itc)
-	// {
-	// 	for (Plan::iterator ite=active_plan.begin(); ite != active_plan.end(); ++ite)
-	// 	{
-	// 		p1 = (*ite).get_dir_plane();
-	// 		p2 = (*itc).get_dir_plane();
-	// 		if (itc == active_plan.begin())
-	// 			p3 = active_plan.back().get_dir_plane();
-	// 		else
-	// 			p3 = (*next(itc)).get_dir_plane();
+	for (Plan::iterator itc=active_plan.begin(); itc != active_plan.end(); ++itc)
+	{
+		for (Plan::iterator ite=active_plan.begin(); ite != active_plan.end(); ++ite)
+		{
+			p1 = (*ite)->ge_next()->get_dir_plane();
+			p2 = (*itc)->ge_next()->get_dir_plane();
+			p3 = (*itc)->ge_prev()->get_dir_plane();
+
+			// if (itc == active_plan.begin())
+			// 	p3 = active_plan.back().get_dir_plane();
+			// else
+			// 	p3 = (*next(itc)).get_dir_plane();
 
 
-	// 		if (!(&p1 == &p2 || &p1 == &p3 || &p2 == &p3) && intersect_is_point(p1, p2, p3))
-	// 		{
-	// 			print_co(intersect_3_planes(p1, p2, p3));
-	// 		}
-	// 		// event = ;
+			if (!(&p1 == &p2 || &p1 == &p3 || &p2 == &p3) && intersect_is_point(p1, p2, p3))
+			{
+				cout << "pt : " << intersect_3_planes(p1, p2, p3) << endl;
+			}
+			// event = ;
 
 	// 		// Q.push(event);
-	// 	}	
-	// }
+		}	
+	}
 }
 
 

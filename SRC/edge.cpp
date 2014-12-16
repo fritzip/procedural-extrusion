@@ -47,10 +47,10 @@ Edge::Edge( const /*std::vector<WZco>*/ int &_profile ) : profile(_profile), dir
 Edge::~Edge()
 {}
 
-
 /*************************************/
 //			Public methods
 /*************************************/
+
 
 /*************************************/
 //			Getters

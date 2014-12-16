@@ -33,17 +33,21 @@ void Plan::append(const double &x, const double &y, const double &z, const /*std
 {
 	Corner *c = new Corner(x, y, z);
 	Edge *e = new Edge(profile);
-	plan.push_back(c);
+	cout << "in append : " << *c << endl;
+	if (plan.empty()) 
+	{
+		c->se_prev(NULL);
+	}
+	else 
+	{
+		c->se_prev(plan.back()->ge_next());
+		c->ge_prev()->sc_next(c);
+	}
 	c->se_next(e);
 	e->sc_prev(c);
 
+	plan.push_back(c);
 }
-
-// void Plan::append(double x, double y, std::vector<WZco> profile )
-// {
-// 	Corner *c = new Corner(x, y, 0);
-// 	plan.push_back(c);
-// }
 
 void Plan::finish()
 {

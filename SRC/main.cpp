@@ -285,11 +285,11 @@ void InitGlut(int width,int height)
 
 int main(int argc, char **argv)
 {
-	glutInit(&argc, argv);
-	InitGlut(512,512);
-	glewInit();
+	// glutInit(&argc, argv);
+	// InitGlut(512,512);
+	// glewInit();
 
-	scene=new Cube(Vector(-1,-1,-2),Vector(2,3,1));
+	// scene=new Cube(Vector(-1,-1,-2),Vector(2,3,1));
 	// scene=new Cylinder(Vector(0,0,0),Vector(0,0,1),0.5,30);
 
 	// Corner *c1 = new Corner(0.0, 1.0, 0.0);
@@ -310,11 +310,11 @@ int main(int argc, char **argv)
 	list<Corner*> elplan = input_plan.get_plan();
 	for (list<Corner*>::iterator it=elplan.begin(); it != elplan.end(); ++it)
 	{
-		cout << *(*it) << endl; 
+		cout << *((*it)->ge_prev()->gc_prev()) << endl; 
 	}
 
 	// House ma_maison(input_plan);
 
-	glutMainLoop();
+	// glutMainLoop();
 	return 0;
 }
