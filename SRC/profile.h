@@ -9,24 +9,33 @@
 
 class Corner;
 
-struct WZco
+struct RTco
 {
-	double w, z;
+	double r, theta;
 };
 
 class Profile
 {
-
-	std::vector<WZco> p;
+	std::vector<RTco> p;
+	int valid;
 
 public:
 	Profile();
-	// std::pair<int, double>
-	Profile( std::vector<WZco> );
+	Profile( std::vector<RTco> );
 	
 	~Profile();
 
+	int is_valid() const ;
+	void print(std::ostream &flux) const ;
 	std::vector<Vector> to_cartesian(Corner *c1, Corner *c2);
 };
+
+std::ostream &operator<<( std::ostream &flux, const Profile &co);
+std::ostream &operator<<( std::ostream &flux, const RTco &co);
+
+int operator==(const RTco&, const RTco&);
+int operator!=(const RTco&, const RTco&);
+// int operator< (const RTco&, const RTco&);
+// int operator> (const RTco&, const RTco&);
 
 #endif

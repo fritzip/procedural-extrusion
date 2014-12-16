@@ -29,11 +29,22 @@ Plan::~Plan()
 /*************************************/
 //			Public methods
 /*************************************/
-void Plan::append(const double &x, const double &y, const double &z, const Profile &profile )
+int Plan::append(const double &x, const double &y, const double &z, const Profile &profile )
 {
 	Corner *c = new Corner(x, y, z);
+	// if (!c->is_valid()) 
+	// {
+	// 	cout << "Unvalid corner" << endl;
+	// 	return 1;
+	// }
 	Edge *e = new Edge(profile);
-	cout << "in append : " << *c << endl;
+	if (!e->is_valid()) 
+	{
+		cout << "Unvalid edge" << endl;
+		return 1;
+	}
+	// cout << profile << endl;
+	// cout << "new corner added : " << *c << endl;
 	if (plan.empty()) 
 	{
 		c->se_prev(NULL);
@@ -47,6 +58,7 @@ void Plan::append(const double &x, const double &y, const double &z, const Profi
 	e->sc_prev(c);
 
 	plan.push_back(c);
+	return 0;
 }
 
 void Plan::finish()

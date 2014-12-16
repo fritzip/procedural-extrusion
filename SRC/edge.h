@@ -15,14 +15,15 @@ class Edge
 	Plane directionPlane;
 	Corner *prev;
 	Corner *next;
+	int valid;
 
 public:
 	Edge();
-	// Edge(Corner *c1, Corner *c2 );
 	Edge( const Profile &_profile ) ;
 	~Edge();
 
 	Plane get_dir_plane() const ;
+	int is_valid() const ;
 	Corner* gc_prev() const ;
 	Corner* gc_next() const ;
 	void sc_prev(Corner*) ;

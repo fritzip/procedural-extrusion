@@ -16,30 +16,11 @@ using namespace std;
 Edge::Edge()
 {}
 
-// Edge::Edge(Corner *c1, Corner *c2 ) : prev(c1), next(c2)
-// {
-// 	c1->next = this;
-// 	c2->prev = this;
-// } 
+Edge::Edge( const Profile &_profile ) : profile(_profile), directionPlane(), prev(NULL), next(NULL), valid(0)
+{
+	valid = profile.is_valid();
+}
 
-Edge::Edge( const Profile &_profile ) : profile(_profile), directionPlane(), prev(NULL), next(NULL)
-{}
-
-
-// Edge::Edge( vector<WZco> _profile, Corner *c1, Corner *c2 )
-// {
-// 	prev = c1 ;
-// 	next = c2 ;
-// 	profile = _profile ;
-
-// 	// if (_profile.size() >= 2)
-// 	// {
-// 	// 	Vector pt = wz_to_xyz(_profile[0], _profile[1], fabs( c1->get_co().y - c2->get_co().y ) / 2 );
-// 	// 	directionPlane = Plane(c1->get_co(), c2->get_co(), pt);
-// 	// }
-// 	// else 
-// 	// 	directionPlane = Plane();
-// }
 
 /*************************************/
 //			Destructors
@@ -56,6 +37,7 @@ Edge::~Edge()
 //			Getters
 /*************************************/
 Plane Edge::get_dir_plane() const { return directionPlane; }
+int Edge::is_valid() const { return valid ;}
 Corner* Edge::gc_prev() const { return prev; }
 Corner* Edge::gc_next() const { return next; }
 

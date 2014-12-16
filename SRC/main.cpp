@@ -304,7 +304,7 @@ int main(int argc, char **argv)
 	// Edge *e4 = new Edge(c4, c1);
 
 	Plan input_plan;
-	input_plan.append(1.0, 0.0, 0.0, Profile( { WZco{1,4}, WZco{4,5}, WZco{4,4} } ) );
+	input_plan.append(1.0, 0.0, 0.0, Profile( { RTco{1,4}, RTco{4,5}, RTco{5,1} } ) );
 	// input_plan.append(1.0, 1.0, 0.0, 5);
 	// input_plan.append(0.0, 0.0, 0.0, 6);
 	// input_plan.finish();

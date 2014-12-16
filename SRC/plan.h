@@ -15,7 +15,7 @@ public:
 	Plan();
 	~Plan();
 
-	void append(const double &x, const double &y, const double &z, const Profile &profile );
+	int append(const double &x, const double &y, const double &z, const Profile &profile );
 
 	void finish();
 

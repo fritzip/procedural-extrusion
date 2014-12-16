@@ -15,12 +15,27 @@ using namespace std;
 /*************************************/
 Profile::Profile()
 {
-	p.push_back(WZco{0,0});
+	p.push_back(RTco{0,0});
 }
 //pair<int, double>
-Profile::Profile( vector<WZco> _p )
+Profile::Profile( vector<RTco> p_in )
 {
-	p = _p; // securiser plus ici
+	valid = 1;
+	p.push_back(RTco{0,0});
+	for(vector<RTco>::iterator it = p_in.begin(); it != p_in.end(); ++it) 
+	{
+		if ( (*it).theta != p.back().theta && (*it).theta <= 90 && (*it).theta >= -90 )
+		{
+			p.push_back(*it);
+			cout << "OKAY : "  << *it << endl;
+		}
+		else
+		{
+			cout << "WRONG : " << *it << endl;
+			valid = 0;
+			break;
+		}
+	}
 } 
 
 
@@ -47,6 +62,15 @@ Profile::~Profile()
 
 // }
 
+int Profile::is_valid() const { return valid; }
+
+void Profile::print(ostream &flux) const
+{
+	for(vector<int>::size_type i = 0; i != p.size(); i++) 
+	{
+		flux << p[i];
+	}
+}
 
 /*************************************/
 //			Getters
@@ -59,3 +83,25 @@ Profile::~Profile()
 /*************************************/
 //			Operators overloading
 /*************************************/
+
+ostream &operator<<( ostream &flux, const RTco &co)
+{
+	flux << "r = " << co.r << ", theta = " << co.theta ;
+	return flux;
+}
+
+int operator== (const RTco& u, const RTco& v) 
+{
+	return ( (u.theta==v.theta ) && ( u.r==v.r ) );
+}
+
+int operator!= (const RTco& u, const RTco& v) 
+{
+	return ( !(u==v) );
+}
+
+ostream &operator<<( ostream &flux, const Profile &prof)
+{
+	prof.print(flux) ;
+	return flux;
+}

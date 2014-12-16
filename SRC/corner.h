@@ -15,6 +15,7 @@ class Corner
 	Vector co;
 	Edge *prev;
 	Edge *next;	
+	// int valid;
 
 public:
 	Corner();
@@ -25,7 +26,7 @@ public:
 
 	void print(std::ostream &flux) const ;
 
-
+	// int is_valid() const ;
 	Edge* ge_prev() const ;
 	Edge* ge_next() const ;
 

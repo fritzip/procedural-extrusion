@@ -36,12 +36,12 @@ Corner::~Corner()
 void Corner::print(ostream &flux) const
 {
 	co.print(flux);
-	// flux << "x = " << co[0] << ", y = " << co[1] << ", z = " << co[2] << endl;
 }
 
 /*************************************/
 //			Getters
 /*************************************/
+// int Corner::is_valid() const { return valid ; }
 Edge* Corner::ge_prev() const { return prev ; }
 Edge* Corner::ge_next() const { return next ; }
 

@@ -40,7 +40,7 @@ void House::extrude()
 
 			if (!(&p1 == &p2 || &p1 == &p3 || &p2 == &p3) && intersect_is_point(p1, p2, p3))
 			{
-				cout << "pt : " << intersect_3_planes(p1, p2, p3) << endl;
+				cout << "pt intersect : " << intersect_3_planes(p1, p2, p3) << endl;
 			}
 			// event = ;
 
