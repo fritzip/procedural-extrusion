@@ -15,13 +15,11 @@ public:
 	Plan();
 	~Plan();
 
-	void append(const double &x, const double &y, const double &z, const /*std::vector<WZco>*/ int &profile );
-
-	// void append(double x, double y, std::vector<WZco> profile );
+	void append(const double &x, const double &y, const double &z, const Profile &profile );
 
 	void finish();
 
-	std::list<Corner*> const& get_plan() const;
+	const std::list<Corner*> & get_plan() const;
 };
 
 #endif

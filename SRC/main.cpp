@@ -7,11 +7,13 @@
 
 #include <iostream>
 #include <stdio.h>
+#include <utility>
+#include <vector>
+
 
 #include "vector.h"
-
 #include "shape.h"
-
+// #include "profile.h"
 #include "house.h"
 
 using namespace std;
@@ -302,16 +304,16 @@ int main(int argc, char **argv)
 	// Edge *e4 = new Edge(c4, c1);
 
 	Plan input_plan;
-	input_plan.append(1.0, 0.0, 0.0, 4);
-	input_plan.append(1.0, 1.0, 0.0, 5);
-	input_plan.append(0.0, 0.0, 0.0, 6);
-	input_plan.finish();
+	input_plan.append(1.0, 0.0, 0.0, Profile( { WZco{1,4}, WZco{4,5}, WZco{4,4} } ) );
+	// input_plan.append(1.0, 1.0, 0.0, 5);
+	// input_plan.append(0.0, 0.0, 0.0, 6);
+	// input_plan.finish();
 
-	list<Corner*> elplan = input_plan.get_plan();
-	for (list<Corner*>::iterator it=elplan.begin(); it != elplan.end(); ++it)
-	{
-		cout << *((*it)->ge_prev()->gc_prev()) << endl; 
-	}
+	// list<Corner*> elplan = input_plan.get_plan();
+	// for (list<Corner*>::iterator it=elplan.begin(); it != elplan.end(); ++it)
+	// {
+	// 	cout << *((*it)->ge_prev()->gc_prev()) << endl; 
+	// }
 
 	// House ma_maison(input_plan);
 

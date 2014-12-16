@@ -22,7 +22,7 @@ Edge::Edge()
 // 	c2->prev = this;
 // } 
 
-Edge::Edge( const /*std::vector<WZco>*/ int &_profile ) : profile(_profile), directionPlane(), prev(NULL), next(NULL)
+Edge::Edge( const Profile &_profile ) : profile(_profile), directionPlane(), prev(NULL), next(NULL)
 {}
 
 
@@ -56,8 +56,8 @@ Edge::~Edge()
 //			Getters
 /*************************************/
 Plane Edge::get_dir_plane() const { return directionPlane; }
-Corner* Edge::gc_prev() const {return prev;}
-Corner* Edge::gc_next() const {return next;}
+Corner* Edge::gc_prev() const { return prev; }
+Corner* Edge::gc_next() const { return next; }
 
 /*************************************/
 //			Setters

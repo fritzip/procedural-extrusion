@@ -42,9 +42,9 @@ void Plane::compute_plan( const Vector &p, const Vector &q, const Vector &r  )
 /*************************************/
 //			Getters
 /*************************************/
-Vector Plane::get_norm() const { return n; }
+const Vector& Plane::get_norm() const { return n; }
 
-vector<Vector> Plane::get_vert() const { return vertex; }
+const vector<Vector>& Plane::get_vert() const { return vertex; }
 
 /*************************************/
 //			Setters
@@ -54,20 +54,20 @@ vector<Vector> Plane::get_vert() const { return vertex; }
 /*************************************/
 //			Operators overloading
 /*************************************/
-double& Plane::operator[] (int i) 
-{
-	if      (i == 0) return n[0];
-	else if (i == 1) return n[1];
-	else if (i == 2) return n[2];
-	else             return n[3];
-}
+// double& Plane::operator[] (int i) 
+// {
+// 	if      (i == 0) return n[0];
+// 	else if (i == 1) return n[1];
+// 	else if (i == 2) return n[2];
+// 	else             return d;
+// }
 
-const double Plane::operator[] (int i) const 
+double Plane::operator[] (int i) const 
 {
 	if      (i == 0) return n[0];
 	else if (i == 1) return n[1];
 	else if (i == 2) return n[2];
-	else             return n[3];
+	else             return d;
 }
 
 /*************************************/

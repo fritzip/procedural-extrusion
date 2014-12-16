@@ -1,13 +1,9 @@
 #ifndef __EDGE_H__
 #define __EDGE_H__
 
-#include "corner.h"
 #include "plane.h"
-
-struct WZco
-{
-	double w, z;
-};
+#include "corner.h"
+#include "profile.h"
 
 class Corner;
 
@@ -15,15 +11,15 @@ class Edge
 {
 	friend class Corner;
 
-	/*std::vector<WZco>*/ int profile;
+	Profile profile;
 	Plane directionPlane;
-	Corner *prev; // replace by vector ?
+	Corner *prev;
 	Corner *next;
 
 public:
 	Edge();
 	// Edge(Corner *c1, Corner *c2 );
-	Edge( const /*std::vector<WZco>*/ int &_profile ) ;
+	Edge( const Profile &_profile ) ;
 	~Edge();
 
 	Plane get_dir_plane() const ;

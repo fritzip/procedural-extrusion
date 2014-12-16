@@ -29,7 +29,7 @@ Plan::~Plan()
 /*************************************/
 //			Public methods
 /*************************************/
-void Plan::append(const double &x, const double &y, const double &z, const /*std::vector<WZco>*/ int &profile )
+void Plan::append(const double &x, const double &y, const double &z, const Profile &profile )
 {
 	Corner *c = new Corner(x, y, z);
 	Edge *e = new Edge(profile);
@@ -58,7 +58,7 @@ void Plan::finish()
 /*************************************/
 //			Getters
 /*************************************/
-list<Corner*> const& Plan::get_plan() const { return plan ; }
+const list<Corner*> & Plan::get_plan() const { return plan ; }
 
 /*************************************/
 //			Setters
