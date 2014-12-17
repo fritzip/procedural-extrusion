@@ -22,7 +22,8 @@ public:
 	Corner(const double &x, const double &y, const double &z);
 	// Corner(const double &x, const double &y, const double &z, Edge *e1, Edge *e2 ) ;
 	~Corner();
-	// Vector get_co() const { return co; }
+	
+	const Vector& get_co() const;
 
 	void print(std::ostream &flux) const ;
 

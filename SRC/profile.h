@@ -25,6 +25,7 @@ public:
 	
 	~Profile();
 
+	const std::vector<RTco> & get_p() const;
 	int is_valid() const ;
 	void print(std::ostream &flux) const ;
 	std::vector<Vector> to_cartesian(Corner *c1, Corner *c2);

@@ -22,6 +22,8 @@ public:
 	Edge( const Profile &_profile ) ;
 	~Edge();
 
+	void compute_dir_plane();
+
 	Plane get_dir_plane() const ;
 	int is_valid() const ;
 	Corner* gc_prev() const ;

@@ -65,6 +65,13 @@ void Plan::finish()
 {
 	plan.back()->ge_next()->sc_next(plan.front());
 	plan.front()->se_prev(plan.back()->ge_next());
+	if (plan.size() > 2)
+	{
+		for (std::list<Corner*>::iterator it=plan.begin(); it != plan.end(); ++it)
+		{
+			(*it)->ge_next()->compute_dir_plane();
+		}
+	}
 }
 
 /*************************************/

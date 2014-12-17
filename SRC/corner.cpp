@@ -41,6 +41,7 @@ void Corner::print(ostream &flux) const
 /*************************************/
 //			Getters
 /*************************************/
+const Vector& Corner::get_co() const { return co; }
 // int Corner::is_valid() const { return valid ; }
 Edge* Corner::ge_prev() const { return prev ; }
 Edge* Corner::ge_next() const { return next ; }

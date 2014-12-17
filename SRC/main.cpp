@@ -304,10 +304,11 @@ int main(int argc, char **argv)
 	// Edge *e4 = new Edge(c4, c1);
 
 	Plan input_plan;
-	input_plan.append(1.0, 0.0, 0.0, Profile( { RTco{1,4}, RTco{4,5}, RTco{5,1} } ) );
-	// input_plan.append(1.0, 1.0, 0.0, 5);
-	// input_plan.append(0.0, 0.0, 0.0, 6);
-	// input_plan.finish();
+	input_plan.append(1.0, 1.0, 0.0, Profile( { RTco{7,45} } ) );
+	input_plan.append(11.0, 2.0, 0.0, Profile( { RTco{7,45} } ) );
+	input_plan.append(10.0, 11.0, 0.0, Profile( { RTco{7,45} } ) );
+	input_plan.append(1.0, 10.0, 0.0, Profile( { RTco{7,45} } ) );
+	input_plan.finish();
 
 	// list<Corner*> elplan = input_plan.get_plan();
 	// for (list<Corner*>::iterator it=elplan.begin(); it != elplan.end(); ++it)

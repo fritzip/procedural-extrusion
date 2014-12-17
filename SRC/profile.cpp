@@ -15,23 +15,24 @@ using namespace std;
 /*************************************/
 Profile::Profile()
 {
-	p.push_back(RTco{0,0});
+	// p.push_back(RTco{0,0});
 }
 //pair<int, double>
 Profile::Profile( vector<RTco> p_in )
 {
 	valid = 1;
-	p.push_back(RTco{0,0});
+	// p.push_back(RTco{0,0});
 	for(vector<RTco>::iterator it = p_in.begin(); it != p_in.end(); ++it) 
 	{
-		if ( (*it).theta != p.back().theta && (*it).theta <= 90 && (*it).theta >= -90 )
+		if ( (*it).theta <= 90 && (*it).theta >= -90 )
 		{
+			// (*it).theta != p.back().theta &&
 			p.push_back(*it);
-			cout << "OKAY : "  << *it << endl;
+			// cout << "OKAY : "  << *it << endl;
 		}
 		else
 		{
-			cout << "WRONG : " << *it << endl;
+			// cout << "WRONG : " << *it << endl;
 			valid = 0;
 			break;
 		}
@@ -61,6 +62,9 @@ Profile::~Profile()
 // {
 
 // }
+
+const vector<RTco> & Profile::get_p() const {return p;}
+
 
 int Profile::is_valid() const { return valid; }
 

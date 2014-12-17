@@ -1,6 +1,6 @@
 /*****************************************************************************/
 //
-//									Vector"
+//									Vector
 //
 /*****************************************************************************/
 #include <iostream>
@@ -12,6 +12,9 @@ using namespace std;
 //			Constructors
 /*************************************/
 Vector::Vector() : x(0), y(0), z(0) 
+{}
+
+Vector::Vector(Vector const& other) : x(other.x), y(other.y), z(other.z)
 {}
 
 Vector::Vector(const double& a, const double& b, const double& c) 

@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "vector.h"
+#include "profile.h"
 
 class Plane
 {
@@ -13,16 +14,17 @@ class Plane
 
 public:
 	Plane();
-	Plane(const Vector &normale, double _d, const Vector &coc1, const Vector &coc2, Vector prof1);
+	Plane(const Vector &p1, const Vector &p2, const RTco &pol);
+	Plane(const Vector &normale, double _d, const Vector &p1, const Vector &p2, Vector prof1);
 	~Plane();
 
 	// double& operator[] (int i) ;
 	double operator[] (int i) const ;
 
 	const Vector& get_norm() const ;
-
 	const std::vector<Vector>& get_vert() const ;
 	
+	Vector compute_3rd_point(const Vector &p1, const Vector &p2, const RTco &pol);
 	void compute_plan( const Vector &p, const Vector &q, const Vector &r  );
 
 };

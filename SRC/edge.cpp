@@ -31,7 +31,11 @@ Edge::~Edge()
 /*************************************/
 //			Public methods
 /*************************************/
-
+void Edge::compute_dir_plane()
+{
+	// cout << prev->get_co() << endl;
+	directionPlane = Plane(prev->get_co(), next->get_co(), profile.get_p().front());	
+}
 
 /*************************************/
 //			Getters
