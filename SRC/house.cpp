@@ -1,14 +1,52 @@
+/*****************************************************************************/
+//
+//									House
+//
+/*****************************************************************************/
 #include <iterator>
+#include <iostream>
+#include <stdio.h>
+#include <math.h>
+#include <list>
+#include <queue>
 
+#include "event.h"
 #include "house.h"
  
 using namespace std;
 
+/*************************************/
+//			Constructors
+/*************************************/
+House::House() : level()
+{}
 
+House::House(Plan *init)
+{
+	cout << "Constructor House" << endl;
+	level.reserve(100);
+	level.push_back(init);
+}
+
+/*************************************/
+//			Destructors
+/*************************************/
+House::~House()
+{
+	cout << "Destroy House" << endl;
+	for (size_t i = 0; i < level.size(); ++i)
+	{
+		delete level[i];
+	}
+}
+	
+	
+/*************************************/
+//			Public methods
+/*************************************/
 void House::extrude()
 {
-	// PriorityQ Q();
-	// cout << "eatue" << endl;
+	PriorityQ Q;
 	Plan* active_plan = level.back();
 	Plane *p1, *p2, *p3;
 
@@ -25,16 +63,28 @@ void House::extrude()
 			{
 				// cout << *((*p1).get_vert().back()) << endl << *((*p2).get_vert().back()) << endl << *((*p3).get_vert().back()) << endl;
 				// cout << "intersect : " << intersect_is_point(*p1, *p2, *p3) << endl;
-				cout << "pt intersect : " << *(intersect_3_planes((*p1), (*p2), (*p3))) << endl;
+				// cout << "pt intersect : " << *(intersect_3_planes((*p1), (*p2), (*p3))) << endl;
+				Vector* pt_intersect = intersect_3_planes((*p1), (*p2), (*p3));
+				Event event(pt_intersect, (*itc), (*ite), GIE);
+				Q.push(event);
 				// cout << dot(*(intersect_3_planes((*p1), (*p2), (*p3))), (*p1).get_norm()) << endl;
 				// cout << dot(*(intersect_3_planes((*p1), (*p2), (*p3))), (*p2).get_norm()) << endl;
 				// cout << dot(*(intersect_3_planes((*p1), (*p2), (*p3))), (*p3).get_norm()) << endl;
 			}
-	// 		// event = ;
-
-	// // 		// Q.push(event);
+			// event = ;
 		}	
 	}
 }
 
 
+/*************************************/
+//			Getters
+/*************************************/
+
+/*************************************/
+//			Setters
+/*************************************/
+
+/*************************************/
+//			Operators overloading
+/*************************************/

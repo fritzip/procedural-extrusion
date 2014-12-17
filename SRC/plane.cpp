@@ -93,14 +93,14 @@ void Plane::compute_plan( const Vector &p, const Vector &q, const Vector &r  )
 	// n[2] = ( q[0] - p[0] ) * ( r[1] - p[1] ) - ( q[1] - p[1] ) * ( r[0] - p[0] );
 
 	n = normalize(cross(p-q, p-r));
-	double dp = ( n[0] * p[0] + n[1] * p[1] + n[2] * p[2] );
-	double dq = ( n[0] * q[0] + n[1] * q[1] + n[2] * q[2] );
-	double dr = ( n[0] * r[0] + n[1] * r[1] + n[2] * r[2] );
+	d = ( n[0] * p[0] + n[1] * p[1] + n[2] * p[2] );
+	// double dq = ( n[0] * q[0] + n[1] * q[1] + n[2] * q[2] );
+	// double dr = ( n[0] * r[0] + n[1] * r[1] + n[2] * r[2] );
 	// cout << dot(n, p-q-r) << endl;
 	// cout << dot(n, q-r+p) << endl;
 	// cout << dot(n, r-p-p) << endl;
 	// cout << "les d : " << dp << " " << dq << " " << dr << endl;
-	d = dp;
+	// d = dp;
 }
 
 

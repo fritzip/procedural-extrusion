@@ -1,6 +1,8 @@
 #ifndef __PLAN_H__
 #define __PLAN_H__
 
+#include <list>
+
 #include "corner.h"
 #include "edge.h"
 #include "plane.h"

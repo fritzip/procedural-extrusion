@@ -19,8 +19,8 @@ Union::Union(Node* a,Node* b)
 
 Union::~Union()
 {
-  delete a;
-  delete b;
+  // delete a;
+  // delete b;
 }
 
 void Union::Render()
