@@ -24,7 +24,7 @@ Event::Event(Vector *pt, Corner *bilat, Corner *unilat, int evt_type ) : co(pt),
 /*************************************/
 Event::~Event()
 {
-	cout << "Destroy Event" << endl;
+	// cout << "Destroy Event" << endl;
 }
 
 /*************************************/

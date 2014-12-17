@@ -63,7 +63,7 @@ void House::extrude()
 			{
 				// cout << *((*p1).get_vert().back()) << endl << *((*p2).get_vert().back()) << endl << *((*p3).get_vert().back()) << endl;
 				// cout << "intersect : " << intersect_is_point(*p1, *p2, *p3) << endl;
-				// cout << "pt intersect : " << *(intersect_3_planes((*p1), (*p2), (*p3))) << endl;
+				cout << "pt intersect : " << *(intersect_3_planes((*p1), (*p2), (*p3))) << endl;
 				Vector* pt_intersect = intersect_3_planes((*p1), (*p2), (*p3));
 				Event event(pt_intersect, (*itc), (*ite), GIE);
 				Q.push(event);
@@ -73,9 +73,10 @@ void House::extrude()
 			}
 		}	
 	}
-	for (size_t i = 0; i < Q.size(); ++i)
+	while (!Q.empty())
 	{
 		cout << "z = " << (*(Q.top().get_co()))[2] << endl;
+		Q.pop();
 	}
 }
 

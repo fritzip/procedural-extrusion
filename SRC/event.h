@@ -39,7 +39,7 @@ struct LessThanByZ
 {
 	bool operator()(const Event& lhs, const Event& rhs) const
 	{
-		return (*(lhs.get_co()))[2] < (*(rhs.get_co()))[2];
+		return (*(lhs.get_co()))[2] > (*(rhs.get_co()))[2];
 	}
 };
 
