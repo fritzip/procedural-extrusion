@@ -26,7 +26,9 @@ Vector::Vector(const double& a, const double& b, const double& c)
 //			Destructors
 /*************************************/
 Vector::~Vector()
-{}
+{
+	// cout << "Destroy Vector : " << *this << endl;
+}
 
 /*************************************/
 //			Public methods
@@ -125,6 +127,25 @@ double dot(const Vector &u, const Vector &v)
 	return ( u[0]*v[0] + u[1]*v[1] + u[2]*v[2] );
 }
 
+Vector cross(const Vector &u, const Vector &v)
+{
+	return Vector((u[1] * v[2]) - (u[2] * v[1]), (u[2] * v[0]) - (u[0] * v[2]), (u[0] * v[1]) - (u[1] * v[0]));
+	//(a2b3 - a3b2, a3b1 - a1b3, a1b2 - a2b1)
+}
+
+/*!
+\brief Compute the Euclidean norm of a vector.
+*/
+double norm(const Vector& u)
+{
+	return sqrt(u[0]*u[0]+u[1]*u[1]+u[2]*u[2]);
+}
+
+Vector normalize(const Vector& u)
+{
+	return Vector(u/norm(u));
+}
+
 /*!
 \brief Return a new vector with coordinates set to the minimum coordinates
 of the two argument vectors.
@@ -175,13 +196,7 @@ Vector orthogonal(const Vector& u)
 }
 
 
-/*!
-\brief Compute the Euclidean norm of a vector.
-*/
-double norm(const Vector& u)
-{
-	return sqrt(u[0]*u[0]+u[1]*u[1]+u[2]*u[2]);
-}
+
 
 ostream &operator<<( ostream &flux, const Vector &v)
 {

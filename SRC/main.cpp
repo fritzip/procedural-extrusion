@@ -294,21 +294,22 @@ int main(int argc, char **argv)
 	// scene=new Cube(Vector(-1,-1,-2),Vector(2,3,1));
 	// scene=new Cylinder(Vector(0,0,0),Vector(0,0,1),0.5,30);
 
-	// Corner *c1 = new Corner(0.0, 1.0, 0.0);
-	// Corner *c2 = new Corner(1.0, 0.0, 0.0);
-	// Corner *c3 = new Corner(1.0, 1.0, 0.0);
-	// Corner *c4 = new Corner(0.0, 0.0, 0.0);
-	// Edge *e1 = new Edge(c1, c2);
-	// Edge *e2 = new Edge(c2, c3);
-	// Edge *e3 = new Edge(c3, c4);
-	// Edge *e4 = new Edge(c4, c1);
+	Corner *c1 = new Corner(0.0,  0.0,  0.0);
+	Corner *c2 = new Corner(10.0, 0.0,  0.0);
+	Corner *c3 = new Corner(10.0, 10.0, 0.0);
+	Corner *c4 = new Corner(0.0,  10.0, 0.0);
+	Profile *pr1 = new Profile({ RTco{7,45} });
+	Profile *pr2 = new Profile({ RTco{7,0} });
+	Profile *pr3 = new Profile({ RTco{7,45} });
+	Profile *pr4 = new Profile({ RTco{7,45} });
 
-	Plan input_plan;
-	input_plan.append(1.0, 1.0, 0.0, Profile( { RTco{7,45} } ) );
-	input_plan.append(11.0, 2.0, 0.0, Profile( { RTco{7,45} } ) );
-	input_plan.append(10.0, 11.0, 0.0, Profile( { RTco{7,45} } ) );
-	input_plan.append(1.0, 10.0, 0.0, Profile( { RTco{7,45} } ) );
-	input_plan.finish();
+	Plan *input_plan = new Plan();
+	input_plan->append( c1, pr1 );
+	input_plan->append( c2, pr2 );
+	input_plan->append( c3, pr3 );
+	input_plan->append( c4, pr4 );
+	input_plan->finish();
+
 
 	// list<Corner*> elplan = input_plan.get_plan();
 	// for (list<Corner*>::iterator it=elplan.begin(); it != elplan.end(); ++it)
@@ -316,7 +317,8 @@ int main(int argc, char **argv)
 	// 	cout << *((*it)->ge_prev()->gc_prev()) << endl; 
 	// }
 
-	// House ma_maison(input_plan);
+	House *ma_maison = new House(input_plan);
+	ma_maison->extrude();
 
 	// glutMainLoop();
 	return 0;

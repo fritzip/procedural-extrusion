@@ -6,20 +6,22 @@
 #include "plane.h"
 
 
-class Plan : public std::list<Corner*>
+class Plan//: public std::list<Corner*>
 {
 
 	std::list<Corner*> plan;
 
 public:
 	Plan();
+	// Plan(const Plan &other);
 	~Plan();
 
-	int append(const double &x, const double &y, const double &z, const Profile &profile );
+	int append(const double &x, const double &y, const double &z, Profile *profile );
+	int append(Corner *c, Profile *profile );
 
 	void finish();
 
-	const std::list<Corner*> & get_plan() const;
+	std::list<Corner*>& get_plan() ;
 };
 
 #endif

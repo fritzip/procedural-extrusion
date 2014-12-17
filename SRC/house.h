@@ -12,26 +12,30 @@
 #define PI 3.14159265
 
 
-// XYZco wz_to_xyz(const WZco &p1, const WZco &p2, double y); 
-// reflechir orientation (perpendicalaire à la direction p1 - p2)
-
-
-
-
 class House
 {
 
-	std::vector<Plan> level;
+	std::vector<Plan*> level;
 
 public:
 	House() : level()
 	{}
 
-	House(const Plan &init ) : level(1, init)
-	{}
+	House(Plan *init)
+	{
+		std::cout << "Constructor House" << std::endl;
+		level.reserve(100);
+		level.push_back(init);
+	}
 
 	~House()
-	{}
+	{
+		std::cout << "Destroy House" << std::endl;
+		for (size_t i = 0; i < level.size(); ++i)
+		{
+			delete level[i];
+		}
+	}
 	
 	void extrude();
 };

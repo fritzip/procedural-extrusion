@@ -12,7 +12,7 @@ class Corner
 {
 	friend class Edge;
 
-	Vector co;
+	Vector *co;
 	Edge *prev;
 	Edge *next;	
 	// int valid;
@@ -23,7 +23,7 @@ public:
 	// Corner(const double &x, const double &y, const double &z, Edge *e1, Edge *e2 ) ;
 	~Corner();
 	
-	const Vector& get_co() const;
+	Vector* get_co() const;
 
 	void print(std::ostream &flux) const ;
 

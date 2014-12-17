@@ -16,9 +16,13 @@ using namespace std;
 Edge::Edge()
 {}
 
-Edge::Edge( const Profile &_profile ) : profile(_profile), directionPlane(), prev(NULL), next(NULL), valid(0)
+Edge::Edge( Profile *_profile )
 {
-	valid = profile.is_valid();
+	valid = _profile->is_valid();
+	profile = _profile;
+	directionPlane = new Plane();
+	prev = NULL;
+	next = NULL;
 }
 
 
@@ -26,7 +30,11 @@ Edge::Edge( const Profile &_profile ) : profile(_profile), directionPlane(), pre
 //			Destructors
 /*************************************/
 Edge::~Edge()
-{}
+{
+	cout << "Destroy Edge" << endl;
+	// delete directionPlane;
+	// delete profile;
+}
 
 /*************************************/
 //			Public methods
@@ -34,13 +42,13 @@ Edge::~Edge()
 void Edge::compute_dir_plane()
 {
 	// cout << prev->get_co() << endl;
-	directionPlane = Plane(prev->get_co(), next->get_co(), profile.get_p().front());	
+	directionPlane->compute_dir_plane(prev->get_co(), next->get_co(), profile->get_p().front());	
 }
 
 /*************************************/
 //			Getters
 /*************************************/
-Plane Edge::get_dir_plane() const { return directionPlane; }
+Plane* Edge::get_dir_plane() const { return directionPlane; }
 int Edge::is_valid() const { return valid ;}
 Corner* Edge::gc_prev() const { return prev; }
 Corner* Edge::gc_next() const { return next; }

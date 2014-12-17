@@ -53,7 +53,9 @@ Profile::Profile( vector<RTco> p_in )
 //			Destructors
 /*************************************/
 Profile::~Profile()
-{}
+{
+	cout << "Destroy Profile" << endl;
+}
 
 /*************************************/
 //			Public methods
@@ -63,7 +65,7 @@ Profile::~Profile()
 
 // }
 
-const vector<RTco> & Profile::get_p() const {return p;}
+vector<RTco>& Profile::get_p() {return p;}
 
 
 int Profile::is_valid() const { return valid; }

@@ -25,10 +25,10 @@ public:
 	
 	~Profile();
 
-	const std::vector<RTco> & get_p() const;
+	std::vector<RTco>& get_p() ;
 	int is_valid() const ;
 	void print(std::ostream &flux) const ;
-	std::vector<Vector> to_cartesian(Corner *c1, Corner *c2);
+	// std::vector<Vector> to_cartesian(Corner *c1, Corner *c2);
 };
 
 std::ostream &operator<<( std::ostream &flux, const Profile &co);
@@ -36,7 +36,5 @@ std::ostream &operator<<( std::ostream &flux, const RTco &co);
 
 int operator==(const RTco&, const RTco&);
 int operator!=(const RTco&, const RTco&);
-// int operator< (const RTco&, const RTco&);
-// int operator> (const RTco&, const RTco&);
 
 #endif

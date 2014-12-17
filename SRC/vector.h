@@ -54,12 +54,12 @@ class Vector
 		friend int operator!=(const Vector&,const Vector&);
 		friend int operator<(const Vector&,const Vector&);
 		friend int operator>(const Vector&,const Vector&);
-
-
 };
 
 // Scalar product
 double dot(const Vector&, const Vector&);
+Vector cross(const Vector&, const Vector&);
+
 // Determinant
 double det2(const double a, const double b, const double c, const double d);
 double det3(const Vector &p1, const Vector &p2, const Vector &p3);
@@ -69,6 +69,8 @@ Vector max(const Vector&,const Vector&);
 Vector orthogonal(const Vector&);
 // Norm
 double norm(const Vector&);
+
+Vector normalize(const Vector&);
 
 std::ostream &operator<<( std::ostream &flux, const Vector &v);
 

@@ -15,8 +15,12 @@ using namespace std;
 Corner::Corner() : co(), prev(NULL), next(NULL)
 {}
 
-Corner::Corner(const double &x, const double &y, const double &z) : co(x, y, z), prev(NULL), next(NULL)
-{}
+Corner::Corner(const double &x, const double &y, const double &z)
+{
+	co = new Vector(x,y,z);
+	prev = NULL;
+	next = NULL;
+}
 
 // Corner::Corner(const double &x, const double &y, const double &z, Edge *e1, Edge *e2 ) : co(x, y, z), prev(e1), next(e2)
 // {
@@ -28,20 +32,23 @@ Corner::Corner(const double &x, const double &y, const double &z) : co(x, y, z),
 //			Destructors
 /*************************************/
 Corner::~Corner()
-{}
+{
+	cout << "Destroy Corner" << endl;
+	// delete co;
+}
 
 /*************************************/
 //			Public methods
 /*************************************/
 void Corner::print(ostream &flux) const
 {
-	co.print(flux);
+	co->print(flux);
 }
 
 /*************************************/
 //			Getters
 /*************************************/
-const Vector& Corner::get_co() const { return co; }
+Vector* Corner::get_co() const { return co; }
 // int Corner::is_valid() const { return valid ; }
 Edge* Corner::ge_prev() const { return prev ; }
 Edge* Corner::ge_next() const { return next ; }
