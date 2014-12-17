@@ -47,6 +47,4 @@ struct LessThanByZ
 
 typedef std::priority_queue<Event, std::vector<Event>, LessThanByZ> PriorityQ;
 
-// typedef std::priority_queue<Event,std::vector<Event>,EventComparaison> PriorityQ;
-
 #endif

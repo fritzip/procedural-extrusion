@@ -71,8 +71,11 @@ void House::extrude()
 				// cout << dot(*(intersect_3_planes((*p1), (*p2), (*p3))), (*p2).get_norm()) << endl;
 				// cout << dot(*(intersect_3_planes((*p1), (*p2), (*p3))), (*p3).get_norm()) << endl;
 			}
-			// event = ;
 		}	
+	}
+	for (size_t i = 0; i < Q.size(); ++i)
+	{
+		cout << "z = " << (*(Q.top().get_co()))[2] << endl;
 	}
 }
 
