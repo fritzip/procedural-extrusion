@@ -51,6 +51,7 @@ public:
 	std::vector<Event>& get_clust() { return v; } 
 	Vector* get_bary() const { return bary; }
 	int get_type() const { return type; }
+	std::vector<Edge*>& get_ed() { return ed; }
 
 	void compute_nb_of_diff_planes()
 	{

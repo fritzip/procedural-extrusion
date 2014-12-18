@@ -299,7 +299,7 @@ int main(int argc, char **argv)
 	Corner *c3 = new Corner(10.0, 10.0, 0.0);
 	Corner *c4 = new Corner(0.0,  10.0, 0.0);
 	Profile *pr1 = new Profile({ RTco{7,45} });
-	Profile *pr2 = new Profile({ RTco{7,0} });
+	Profile *pr2 = new Profile({ RTco{7,45} });
 	Profile *pr3 = new Profile({ RTco{7,45} });
 	Profile *pr4 = new Profile({ RTco{7,45} });
 

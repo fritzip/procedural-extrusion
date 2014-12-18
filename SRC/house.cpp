@@ -114,7 +114,8 @@ void House::extrude()
 	for (size_t i = 0; i < clustering.size(); ++i)
 	{
 		cout << "cluster n°" << i << ", type : " << clustering[i].get_type() << endl;
-		cout << "cluster type : " << clustering[i].get_type() << endl;
+		clustering[i].compute_nb_of_diff_planes();
+		cout << "nb of diff planes : " << clustering[i].get_ed().size() << endl;
 		for (size_t j = 0; j < clustering[i].get_clust().size(); ++j)
 		{
 			 cout << "pt : " << *(clustering[i].get_clust()[j].get_co()) << endl;
