@@ -17,11 +17,11 @@ using namespace std;
 Plan::Plan() : plan()
 {}
 
-// Plan::Plan(const Plan &other) : plan(other.plan)
-// {
-// 	cout << "yalaloulou" << endl;
-// 	// plan = p;	
-// }
+Plan::Plan(const double &z) : plan(), z(z)
+{}
+
+Plan::Plan(const list<Corner*> &plan, const double &zinit) : plan(plan), z(zinit)
+{}
 
 // Plan::Plan(Corner *c) : plan(c)
 // {}

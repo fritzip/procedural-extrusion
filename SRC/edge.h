@@ -16,6 +16,7 @@ class Edge
 	Corner *prev;
 	Corner *next;
 	int valid;
+	Vector *next_ede;
 
 public:
 	Edge();
@@ -28,6 +29,7 @@ public:
 	int is_valid() const ;
 	Corner* gc_prev() const ;
 	Corner* gc_next() const ;
+	Vector* get_next_ede() const ;
 	void sc_prev(Corner*) ;
 	void sc_next(Corner*) ;
 };

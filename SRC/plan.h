@@ -12,10 +12,12 @@ class Plan//: public std::list<Corner*>
 {
 
 	std::list<Corner*> plan;
+	double z;
 
 public:
 	Plan();
-	// Plan(const Plan &other);
+	Plan(const double &z);
+	Plan(const std::list<Corner*> &plan, const double &z);
 	~Plan();
 
 	int append(const double &x, const double &y, const double &z, Profile *profile );
@@ -23,7 +25,7 @@ public:
 
 	void finish();
 
-	std::list<Corner*>& get_plan() ;
+	std::list<Corner*>& get_plan();
 };
 
 #endif

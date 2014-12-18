@@ -19,7 +19,9 @@ using namespace std;
 //			Constructors
 /*************************************/
 House::House() : level()
-{}
+{
+	level.reserve(100);
+}
 
 House::House(Plan *init)
 {
@@ -44,16 +46,18 @@ House::~House()
 /*************************************/
 //			Public methods
 /*************************************/
-void House::extrude()
+void House::extrude(Plan *sweep_plan)
 {
 	PriorityQ Q;
-	Plan* active_plan = level.back();
 	Plane *p1, *p2, *p3;
 	vector<Cluster> clustering;
 
-	for (list<Corner*>::iterator itc=active_plan->get_plan().begin(); itc != active_plan->get_plan().end(); ++itc)
+	for (list<Corner*>::iterator itc=sweep_plan->get_plan().begin(); itc != sweep_plan->get_plan().end(); ++itc)
 	{
-		for (list<Corner*>::iterator ite=active_plan->get_plan().begin(); ite != active_plan->get_plan().end(); ++ite)
+		cout << " ede : " <<  (*((*itc)->ge_next()->get_next_ede())) << endl;
+		Event event( (*itc)->ge_next()->get_next_ede(), (*itc), NULL, EDE);
+		Q.push(event);
+		for (list<Corner*>::iterator ite=sweep_plan->get_plan().begin(); ite != sweep_plan->get_plan().end(); ++ite)
 		{
 			// cout << "somthing her" << endl;
 			p1 = (*ite)->ge_next()->get_dir_plane();
@@ -84,7 +88,7 @@ void House::extrude()
 		ADD_TO_CLUST = 0;
 		if ( ( (*(current.get_co()))[2] - zinit) < 0.0001)
 		{
-			cout << "current = " << (*(current.get_co())) << endl;
+			cout << "current = " << (*(current.get_co())) << " ==> ";
 			for (size_t i = 0; i < clustering.size(); ++i)
 			{
 				if( norm((*(clustering[i].get_bary())) - (*(current.get_co()))) < 0.000001 && current.get_type() == clustering[i].get_type() )
@@ -111,16 +115,23 @@ void House::extrude()
 		}
 	}
 
+	Plan *upstairs = new Plan(sweep_plan->get_plan(), zinit);
 	for (size_t i = 0; i < clustering.size(); ++i)
 	{
-		cout << "cluster n°" << i << ", type : " << clustering[i].get_type() << endl;
-		clustering[i].compute_nb_of_diff_planes();
-		cout << "nb of diff planes : " << clustering[i].get_ed().size() << endl;
+		cout << "\n Cluster n°" << i << ", type : " << clustering[i].get_type() << endl;
+		if (clustering[i].get_type() == GIE)
+		{
+			clustering[i].compute_nb_of_diff_planes();
+			cout << "nb of diff planes : " << clustering[i].get_ed().size() << endl;
+		}
 		for (size_t j = 0; j < clustering[i].get_clust().size(); ++j)
 		{
-			 cout << "pt : " << *(clustering[i].get_clust()[j].get_co()) << endl;
+			 cout << "	- pt : " << *(clustering[i].get_clust()[j].get_co()) << endl;
 		}
-		cout << "barycentre : " << *(clustering[i].get_bary()) << endl;
+		cout << "barycentre : " << *(clustering[i].get_bary()) << "\n" << endl;
+		clustering[i].handle_events(sweep_plan, upstairs);
+		level.push_back(sweep_plan);
+		sweep_plan = upstairs;
 	}
 }
 

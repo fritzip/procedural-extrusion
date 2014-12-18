@@ -41,7 +41,7 @@ Plane::~Plane()
 /*************************************/
 //			Public methods
 /*************************************/
-void Plane::compute_dir_plane(Vector *p1, Vector *p2, RTco &pol)
+Vector* Plane::compute_dir_plane(Vector *p1, Vector *p2, RTco &pol)
 {
 	// cout << p1 << endl;
 
@@ -51,11 +51,12 @@ void Plane::compute_dir_plane(Vector *p1, Vector *p2, RTco &pol)
 	Vector *v3 = compute_3rd_point(p1, p2, pol);
 	vertex.push_back(v1);
 	vertex.push_back(v2);
-	vertex.push_back(v3);
+	// vertex.push_back(v3);
 	
 	compute_plan(*v1, *v2, *v3);
 	cout << "n = " << n << ", d = " << d << endl;
 	// vertex.push_back(third);
+	return v3;
 }
 
 Vector* Plane::compute_3rd_point(Vector *p1, Vector *p2, RTco &pol)

@@ -23,7 +23,7 @@ public:
 	const Vector& get_norm() const ;
 	const std::vector<Vector*>& get_vert() const ;
 	
-	void compute_dir_plane(Vector *p1, Vector *p2, RTco &pol);
+	Vector* compute_dir_plane(Vector *p1, Vector *p2, RTco &pol);
 	Vector* compute_3rd_point(Vector *p1, Vector *p2, RTco &pol);
 	void compute_plan( const Vector &p, const Vector &q, const Vector &r  );
 	friend Vector* intersect_3_planes( const Plane &p1, const Plane &p2, const Plane &p3 );

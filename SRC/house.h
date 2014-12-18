@@ -18,7 +18,7 @@ public:
 
 	~House();
 	
-	void extrude();
+	void extrude(Plan*);
 };
 
 #endif

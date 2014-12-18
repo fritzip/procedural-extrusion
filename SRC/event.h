@@ -4,8 +4,10 @@
 #include <iostream>
 #include <algorithm>
 #include <queue>
+#include <vector>
 #include "vector.h"
 #include "corner.h"
+#include "plan.h"
 
 enum type { GIE, EDE };
 
@@ -73,6 +75,22 @@ public:
 				if( !(std::find(ed.begin(), ed.end(), current) != ed.end()) )
 				    ed.push_back(current);
 			}
+		}
+	}
+
+	void handle_events(Plan *sweep_plan, Plan *upstairs)
+	{		
+		for (size_t i = 0; i < ed.size(); ++i)
+		{
+			// ed[i]->add_to_vertex(bary); // in counter clock wise (important to display)
+		}
+		switch (type) {
+			case GIE: 
+				break;
+			case EDE:
+				break;
+
+			default: break;
 		}
 	}
 };

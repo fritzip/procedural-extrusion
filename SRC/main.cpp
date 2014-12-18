@@ -298,27 +298,20 @@ int main(int argc, char **argv)
 	Corner *c2 = new Corner(10.0, 0.0,  0.0);
 	Corner *c3 = new Corner(10.0, 10.0, 0.0);
 	Corner *c4 = new Corner(0.0,  10.0, 0.0);
-	Profile *pr1 = new Profile({ RTco{7,45} });
-	Profile *pr2 = new Profile({ RTco{7,45} });
-	Profile *pr3 = new Profile({ RTco{7,45} });
-	Profile *pr4 = new Profile({ RTco{7,45} });
+	Profile *pr1 = new Profile({ RTco{15,45} });
+	Profile *pr2 = new Profile({ RTco{15,45} });
+	Profile *pr3 = new Profile({ RTco{15,45} });
+	Profile *pr4 = new Profile({ RTco{15,45} });
 
-	Plan *input_plan = new Plan();
+	Plan *input_plan = new Plan(0);
 	input_plan->append( c1, pr1 );
 	input_plan->append( c2, pr2 );
 	input_plan->append( c3, pr3 );
 	input_plan->append( c4, pr4 );
 	input_plan->finish();
 
-
-	// list<Corner*> elplan = input_plan.get_plan();
-	// for (list<Corner*>::iterator it=elplan.begin(); it != elplan.end(); ++it)
-	// {
-	// 	cout << *((*it)->ge_prev()->gc_prev()) << endl; 
-	// }
-
-	House *ma_maison = new House(input_plan);
-	ma_maison->extrude();
+	House *ma_maison = new House();
+	ma_maison->extrude(input_plan);
 
 	// glutMainLoop();
 	return 0;
